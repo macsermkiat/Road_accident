@@ -58,7 +58,7 @@ def result():
     if yhat[0] == 0:
         outcome = "Low probability of dead"
     else:
-        outcome = "High probability of dead"
+        outcome = "Significant probability of dead, need intensive management"
     
     #return "NeuralNetwork model predict outcome of " + outcome + "having seroma." 
     return """<body><p> The prabability of death is """ + str(round(y_prob[0][1], 2)) + """</p>
