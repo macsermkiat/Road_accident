@@ -55,14 +55,18 @@ def result():
     
     y_prob = model.predict_proba(X_new)
     yhat = pd.Series(y_prob[0][1]).map(lambda x: 1 if x> 0.1537 else 0)
+    if yhat[0] == 0:
+        outcome = "Low probability of dead"
+    else:
+        outcome = "High probability of dead"
     
     #return "NeuralNetwork model predict outcome of " + outcome + "having seroma." 
     return """<body><p> The prabability of death is """ + str(round(y_prob[0][1], 2)) + """</p>
-            <p>Predict """ + str(yhat[0]) + """</p></body>"""
+            <p>Predict: """ + outcome + """</p></body>"""
    
 
 if __name__ == '__main__':
     """Connect to Server"""
     HOST = "127.0.0.1"
-    PORT = "5000"
+    PORT = "4000"
     app.run(HOST, PORT, debug=True)
